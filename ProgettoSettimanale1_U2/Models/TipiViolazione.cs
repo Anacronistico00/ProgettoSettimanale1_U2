@@ -12,8 +12,9 @@ public partial class TipiViolazione
     [Key]
     public Guid IdViolazione { get; set; }
 
-    [StringLength(1000)]
-    public string Descrizione { get; set; } = null!;
+    [Required(ErrorMessage = "Il campo Descrizione è obbligatorio.")]
+    [StringLength(1000, ErrorMessage = "La Descrizione non può superare i 1000 caratteri.")]
+    public required string Descrizione { get; set; } = null!;
 
     [InverseProperty("IdViolazioneNavigation")]
     public virtual ICollection<Verbali> Verbalis { get; set; } = new List<Verbali>();
