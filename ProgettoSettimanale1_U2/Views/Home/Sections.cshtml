@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Sezioni - Portale contravvenzioni";
+}
+
+<div class="row text-center">
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg">
+            <div class="card-header bg-success text-white">
+                <i class="fas fa-file-alt"></i> Gestione Verbali
+            </div>
+            <div class="card-body">
+                <p class="card-text">Inserisci, modifica e consulta i verbali per le contravvenzioni.</p>
+                <a asp-controller="Verbali" asp-action="Index" class="btn btn-success">Vai alla sezione</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg">
+            <div class="card-header bg-info text-white">
+                <i class="fas fa-users"></i> Anagrafiche Trasgressori
+            </div>
+            <div class="card-body">
+                <p class="card-text">Gestisci le informazioni dei trasgressori e crea nuovi record.</p>
+                <a asp-controller="Anagrafiche" asp-action="Index" class="btn btn-info">Vai alla sezione</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg">
+            <div class="card-header bg-danger text-white">
+                <i class="fas fa-exclamation-triangle"></i> Tipi di Violazione
+            </div>
+            <div class="card-body">
+                <p class="card-text">Visualizza e aggiungi nuovi tipi di violazione per la gestione delle contravvenzioni.</p>
+                <a asp-controller="TipiViolazione" asp-action="Index" class="btn btn-danger">Vai alla sezione</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg">
+            <div class="card-header bg-warning text-white">
+                <i class="fas fa-exclamation-triangle"></i> Report
+            </div>
+            <div class="card-body">
+                <p class="card-text">Visualizza i report di tutte le violazioni degne di nota</p>
+                <a asp-controller="Report" asp-action="Index" class="btn btn-warning">Vai alla sezione</a>
+            </div>
+        </div>
+    </div>
+</div>

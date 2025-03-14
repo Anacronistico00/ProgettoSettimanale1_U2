@@ -1,0 +1,36 @@
+﻿@model List<PuntiPerTrasgressoreViewModel>
+@{
+    ViewData["Title"] = "Punti Decurtati per Trasgressore";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Punti Decurtati per Trasgressore</h2>
+
+    <a asp-action="Index" class="btn btn-outline-primary mb-3">
+        <i class="fas fa-arrow-left me-2"></i>Torna ai Report
+    </a>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Cognome</th>
+                    <th>Nome</th>
+                    <th>Codice Fiscale</th>
+                    <th>Punti Totali Decurtati</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Cognome</td>
+                        <td>@item.Nome</td>
+                        <td>@item.CodiceFiscale</td>
+                        <td>@item.PuntiTotali</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

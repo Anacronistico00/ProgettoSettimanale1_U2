@@ -1,0 +1,85 @@
+﻿@model List<VerbaliViewModel>
+@{
+    ViewData["Title"] = "Elenco Verbali";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-file-alt me-2"></i>Elenco Verbali</h2>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Inserisci Nuovo Verbale
+        </a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-list me-2"></i>Verbali Registrati</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th><i class="far fa-calendar-alt me-1"></i>Data Violaz.</th>
+                            <th><i class="fas fa-user me-1"></i>Trasgressore</th>
+                            <th><i class="fas fa-exclamation-triangle me-1"></i>Tipo Violazione</th>
+                            <th><i class="fas fa-hashtag me-1"></i>Verbale N°</th>
+                            <th><i class="fas fa-euro-sign me-1"></i>Importo</th>
+                            <th><i class="fas fa-tachometer-alt me-1"></i>Punti</th>
+                            <th><i class="fas fa-cogs me-1"></i>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.DataViolazione.ToString("dd/MM/yyyy")</td>
+                                    <td>@(string.IsNullOrEmpty(item.NomeCompleto) ? "Non specificato" : item.NomeCompleto)</td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.DescrizioneViolazione))
+                                        {
+                                            @(item.DescrizioneViolazione.Length > 50 ? item.DescrizioneViolazione.Substring(0, 50) + "..." : item.DescrizioneViolazione)
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Non specificata</span>
+                                        }
+                                    </td>
+                                    <td class="fw-bold text-center">@item.IdVerbale</td>
+                                    <td class="text-end">€ @item.Importo.ToString("N2")</td>
+                                    <td class="text-center">@(item.DecurtamentoPunti.HasValue ? item.DecurtamentoPunti.Value.ToString() : "-")</td>
+                                    <td>
+                                        <div class="btn-group d-flex justify-content-center" role="group">
+                                            <a asp-action="Details" asp-route-id="@item.IdVerbale" class="btn btn-sm btn-info" title="Dettagli">
+                                                <i class="fas fa-search"></i>
+                                            </a>
+                                            <a asp-action="Edit" asp-route-id="@item.IdVerbale" class="btn btn-sm btn-primary" title="Modifica">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@item.IdVerbale" class="btn btn-sm btn-danger" title="Elimina">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center py-4">
+                                    <div class="alert alert-info mb-0">
+                                        <i class="fas fa-info-circle me-2"></i>Nessun verbale trovato nel sistema.
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

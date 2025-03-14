@@ -1,0 +1,49 @@
+﻿@model Anagrafiche
+@{
+    ViewData["Title"] = "Elimina Anagrafica";
+}
+
+<div class="container mt-4">
+    <h2><i class="fas fa-trash me-2"></i>Conferma Eliminazione</h2>
+
+    <div class="alert alert-danger">
+        <h4><i class="fas fa-exclamation-triangle me-2"></i>Sei sicuro di voler eliminare questa anagrafica?</h4>
+        <p class="mb-0">Questa azione è irreversibile. L'anagrafica verrà rimossa definitivamente dal sistema.</p>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header bg-warning text-white">
+            <h5 class="mb-0"><i class="fas fa-user me-2"></i>Dettagli Anagrafica</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Cognome e Nome</dt>
+                <dd class="col-sm-9 fw-bold">@Model.Cognome @Model.Nome</dd>
+
+                <dt class="col-sm-3">Indirizzo</dt>
+                <dd class="col-sm-9">@Model.Indirizzo</dd>
+
+                <dt class="col-sm-3">Città</dt>
+                <dd class="col-sm-9">@Model.Citta</dd>
+
+                <dt class="col-sm-3">CAP</dt>
+                <dd class="col-sm-9">@Model.Cap</dd>
+
+                <dt class="col-sm-3">Codice Fiscale</dt>
+                <dd class="col-sm-9">@Model.CodiceFiscale</dd>
+            </dl>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="IdAnagrafica" />
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash me-2"></i>Elimina
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fas fa-times me-2"></i>Annulla
+            </a>
+        </div>
+    </form>
+</div>

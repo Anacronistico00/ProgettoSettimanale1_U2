@@ -1,0 +1,87 @@
+﻿@model VerbaliViewModel
+@{
+    ViewData["Title"] = "Dettaglio Verbale";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Dettaglio Verbale #@Model.IdVerbale</h2>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5>Informazioni Generali</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-5">Numero Verbale:</dt>
+                        <dd class="col-sm-7">@Model.IdVerbale</dd>
+
+                        <dt class="col-sm-5">Data Violazione:</dt>
+                        <dd class="col-sm-7">@Model.DataViolazione.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-5">Indirizzo Violazione:</dt>
+                        <dd class="col-sm-7">@(string.IsNullOrEmpty(Model.IndirizzoViolazione) ? "Non specificato" : Model.IndirizzoViolazione)</dd>
+
+                        <dt class="col-sm-5">Agente Accertatore:</dt>
+                        <dd class="col-sm-7">@(string.IsNullOrEmpty(Model.NominativoAgente) ? "Non specificato" : Model.NominativoAgente)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-5">Data Trascrizione:</dt>
+                        <dd class="col-sm-7">@Model.DataTrascrizioneVerbale.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-5">Importo Sanzione:</dt>
+                        <dd class="col-sm-7">€ @Model.Importo.ToString("N2")</dd>
+
+                        <dt class="col-sm-5">Decurtamento Punti:</dt>
+                        <dd class="col-sm-7">@(Model.DecurtamentoPunti.HasValue ? Model.DecurtamentoPunti.Value.ToString() : "Nessuno")</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-info text-white">
+            <h5>Dettagli Violazione</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Codice Violazione:</dt>
+                <dd class="col-sm-9">@Model.IdViolazione</dd>
+
+                <dt class="col-sm-3">Descrizione:</dt>
+                <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.DescrizioneViolazione) ? "Non specificata" : Model.DescrizioneViolazione)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-secondary text-white">
+            <h5>Dati Trasgressore</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">ID Anagrafica:</dt>
+                <dd class="col-sm-9">@Model.IdAnagrafica</dd>
+
+                <dt class="col-sm-3">Nominativo:</dt>
+                <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.NomeCompleto) ? "Non specificato" : Model.NomeCompleto)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Torna alla Lista
+        </a>
+        <a asp-action="Edit" asp-route-id="@Model.IdVerbale" class="btn btn-primary">
+            <i class="fas fa-edit"></i> Modifica
+        </a>
+        <a asp-action="Delete" asp-route-id="@Model.IdVerbale" class="btn btn-danger">
+            <i class="fas fa-print"></i> Elimina
+        </a>
+    </div>
+</div>

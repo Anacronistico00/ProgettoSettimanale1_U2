@@ -1,0 +1,47 @@
+﻿@model List<VerbaliViewModel>
+
+@{
+    ViewData["Title"] = "Violazioni Oltre 400 Euro";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Elenco Verbali con più di 400 euro</h2>
+
+    <a asp-action="Index" class="btn btn-outline-primary mb-3">
+        <i class="fas fa-arrow-left me-2"></i>Torna ai Report
+    </a>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Verbale N°</th>
+                    <th>Data Violaz.</th>
+                    <th>Trasgressore</th>
+                    <th>Tipo Violazione</th>
+                    <th>Importo (€)</th>
+                    <th>Punti</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdVerbale</td>
+                        <td>@item.DataViolazione.ToString("dd/MM/yyyy")</td>
+                        <td>@item.NomeCompleto</td>
+                        <td>
+                            <span title="@item.DescrizioneViolazione">
+                                @(item.DescrizioneViolazione.Length > 50
+                                    ? item.DescrizioneViolazione.Substring(0, 50) + "..."
+                                    : item.DescrizioneViolazione)
+                            </span>
+                        </td>
+                        <td>€ @item.Importo.ToString("N2")</td>
+                        <td>@(item.DecurtamentoPunti.HasValue ? item.DecurtamentoPunti.Value.ToString() : "-")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
